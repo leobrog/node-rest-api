@@ -8,8 +8,8 @@ var app = express();
 
 var Task = require('./api/models/taskModel');
 
-var db = 'mongodb://localhost:27017'; // mLab URI: mongodb://<dbuser>:<dbpassword>@ds059207.mlab.com:59207/node-rest-api-tasks
-//var db = 'mongodb://leob:123456@ds059207.mlab.com:59207/node-rest-api-tasks'
+//var db = 'mongodb://localhost:27017'; // mLab URI: mongodb://<dbuser>:<dbpassword>@ds059207.mlab.com:59207/node-rest-api-tasks
+var db = 'mongodb://leob:123456@ds059207.mlab.com:59207/node-rest-api-tasks'
 
 mongoose.Promise = global.Promise;
 mongoose.connect(db, (err) => {
