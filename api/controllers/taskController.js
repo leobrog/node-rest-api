@@ -42,14 +42,17 @@ exports.readTask = (req, res) => {
 
 exports.updateTask = (req, res) => {
 
-    Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, (err, task) => {
-        
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(task);
-        }
-    })
+    if( req.body.status === 'pending' || req.body.status === 'ongoing' || req.body.status === 'completed'){
+        Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, (err, task) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(task);
+            }
+        });
+    } else {
+        res.json({message : "Status must be pending, ongoing or completed."});
+    }
 }
 
 exports.deleteTask = (req, res) => {
@@ -61,7 +64,7 @@ exports.deleteTask = (req, res) => {
         if (err) {
             res.send(err);
         } else {
-            res.json({message : `Task ${task.name} removed successfully.`});
+            res.json({message : 'Task removed successfully.'});
         }
     });
 };
