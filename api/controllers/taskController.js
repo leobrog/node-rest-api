@@ -14,6 +14,17 @@ exports.listAllTasks = (req, res) => {
     });
 };
 
+exports.listTasksByStatus = (req, res) => {
+
+    Task.find({status : [ req.params.status ]}, (err, task) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(task);
+        }
+    });
+};
+
 exports.createTask = (req, res) => {
 
     var newTask = new Task(req.body);

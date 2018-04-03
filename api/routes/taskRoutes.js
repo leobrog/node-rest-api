@@ -12,4 +12,7 @@ module.exports = (app) => {
         .get(tasks.readTask)
         .put(tasks.updateTask)
         .delete(tasks.deleteTask);
+
+    app.route('/api/tasks/status/:status')
+        .get(tasks.listTasksByStatus);
 };
